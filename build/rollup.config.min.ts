@@ -1,5 +1,5 @@
 import alias from '@rollup/plugin-alias';
-import babel from '@rollup/plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import beep from '@rollup/plugin-beep';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';

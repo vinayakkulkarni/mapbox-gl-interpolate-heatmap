@@ -31,11 +31,11 @@
     "@types/earcut"
   ],
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "types/**/*.ts"
   ],
   "exclude": [
     "dist",
-    "lib",
     "node_modules"
   ]
 }
