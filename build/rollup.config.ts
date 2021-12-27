@@ -46,7 +46,7 @@ export default {
     // CommonJS build
     {
       format: 'cjs',
-      file: pkg.main,
+      file: pkg.unpkg,
       name: pkg.name,
       exports: 'named',
       strict: true,

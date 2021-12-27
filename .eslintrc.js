@@ -14,12 +14,14 @@ module.exports = {
       jsx: false,
     },
   },
-  plugins: ['jsdoc', '@typescript-eslint', 'prettier', 'security'],
+  plugins: ['jsdoc', '@typescript-eslint', 'prettier', 'security', 'import'],
   extends: [
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:jsdoc/recommended',
     'plugin:security/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'prettier',
   ],
   // add your custom rules here
