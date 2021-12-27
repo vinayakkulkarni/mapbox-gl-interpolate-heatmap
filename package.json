@@ -70,6 +70,7 @@
     "eslint-plugin-jsdoc": "^37.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-security": "^1.4.0",
+    "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
     "rollup": "^2.62.0",
     "rollup-plugin-terser": "^7.0.2",
