@@ -1,6 +1,5 @@
 # Mapbox :: Interpolated Heatmap(s)
 
-
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vinayakkulkarni/mapbox-gl-interpolate-heatmap/ci?logo=github-actions)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/actions/workflows/ci.yml)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vinayakkulkarni/mapbox-gl-interpolate-heatmap/Ship%20js%20trigger?label=⛴%20Ship.js%20trigger)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/actions/workflows/shipjs-trigger.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/vinayakkulkarni/mapbox-gl-interpolate-heatmap?sort=semver&logo=github)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/releases)
@@ -13,7 +12,7 @@
 [![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap?logo=lgtm)](https://lgtm.com/projects/g/vinayakkulkarni/mapbox-gl-interpolate-heatmap/alerts/)
 [![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap?logo=lgtm)](https://lgtm.com/projects/g/vinayakkulkarni/mapbox-gl-interpolate-heatmap/context:javascript)
 [![GitHub contributors](https://img.shields.io/github/contributors/vinayakkulkarni/mapbox-gl-interpolate-heatmap)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/graphs/contributors)
-[![FOSSA](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap?ref=badge_shield)
 
 [![eslint](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/eslint?logo=eslint)](https://eslint.org/)
 [![prettier](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/prettier?logo=prettier)](https://prettier.io/)
@@ -22,7 +21,7 @@
 
 ---
 
-InterpolateHeatmapLayer is a minimalist JavaScript library for rendering temperature maps (or interpolate heatmaps) with [Mapbox GJ JS](https://docs.mapbox.com/mapbox-gl-js/guides/). This library was greatly inspired by the [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) library, and depends on [Earcut](https://github.com/mapbox/earcut).
+InterpolateHeatmapLayer is a minimalist JavaScript library for rendering temperature maps (or interpolate heatmaps) with [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js/guides/). This library was greatly inspired by the [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) library, and depends on [Earcut](https://github.com/mapbox/earcut).
 
 Currently, Mapbox provides a heatmap layer that represent the **density** of points in an area, like on this picture:
 
@@ -41,8 +40,6 @@ A live demo showing the global temperature is available [here](https://rylern.gi
 ## Install
 
 - Browser:
-
-  - Copy the [interpolateHeatmapLayer.js](https://github.com/Rylern/InterpolateHeatmapLayer/blob/main/dist/interpolateHeatmapLayer.js) file to your project.
 
   - Import the library before the script using it:
 
@@ -75,16 +72,16 @@ A live demo showing the global temperature is available [here](https://rylern.gi
 - NPM:
 
   ```bash
-  npm install interpolateheatmaplayer
+  npm install mapbox-gl-interpolate-heatmap
   ```
 
   ```javascript
-  const interpolateHeatmapLayer = require('interpolateheatmaplayer');
+  const interpolateHeatmapLayer = require('mapbox-gl-interpolate-heatmap');
 
-  const map = (window.map = new mapboxgl.Map({
+  const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v10',
-  }));
+  });
 
   map.on('load', () => {
     const layer = interpolateHeatmapLayer.create({
@@ -170,3 +167,24 @@ In WebGL:
 - We pass this texture to the shader rendering the heatmap, convert u(x) to a color, and finally display this color.
 
 The size of the computation textures is the size of the rendering texture multiplied by the `framebufferFactor`. This factor can be below 0.5 without any real visual consequences. If the user has defined a region of interest and uses a `framebufferFactor` < 1, visual artifacts appear at the edge of the heatmap. To prevent this, the rendering texture takes the whole screen size if `framebufferFactor` < 1.
+
+## Contributing
+
+1. Create your feature branch from `dev` (`git checkout -b feat/new-feature`)
+2. Commit your changes (`git commit -Sam 'feat: add feature'`)
+3. Push to the branch (`git push origin feat/new-feature`)
+4. Create a new [Pull Request](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare)
+
+_Note_:
+
+1. Please contribute using [Github Flow](https://guides.github.com/introduction/flow/)
+2. Commits & PRs will be allowed only if the commit messages & PR titles follow the [conventional commit standard](https://www.conventionalcommits.org/), _read more about it [here](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)_
+3. PS. Ensure your commits are signed. _[Read why](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)_
+
+Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a new branch from the default branch, add commits, and [open a pull request](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare)
+
+## License
+
+MIT &copy; [GeoSpoc Dev Team](developers@geospoc.com) & Vinayak Kulkarni
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap?ref=badge_large)
