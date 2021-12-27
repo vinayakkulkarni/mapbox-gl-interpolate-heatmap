@@ -1,0 +1,72 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+      - next
+  pull_request_target:
+    branches:
+      - main
+      - next
+
+permissions:
+  checks: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Check out repository (push)
+        if: ${{ github.event_name == 'push' || github.event_name == 'pull_request_target' || github.event_name == 'pull_request' && github.actor != 'dependabot[bot]' }}
+        uses: actions/checkout@v2
+
+      - name: Check out repository (pull_request_target)
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup node env 📦
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+
+      - name: Upgrade npm 🎉
+        run: npm i -g npm@latest
+
+      - name: Install dependencies 🚀
+        run: npm ci --prefer-offline --no-audit --no-optional
+
+      - name: Run linter(s) 👀
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git_name: github-actions[bot]
+          git_email: github-actions[bot]@users.noreply.github.com
+          continue_on_error: false
+          neutral_check_on_warning: true
+          auto_fix: false
+          eslint: true
+          eslint_extensions: js,ts
+          prettier: true
+          prettier_extensions: js,ts
+
+      - name: Perform tests 🧪
+        run: npm run test
+
+      - name: Run build 🏁
+        run: npm run build
