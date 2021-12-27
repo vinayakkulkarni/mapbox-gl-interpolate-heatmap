@@ -1,4 +1,26 @@
-# InterpolateHeatmapLayer
+# Mapbox :: Interpolated Heatmap(s)
+
+
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vinayakkulkarni/mapbox-gl-interpolate-heatmap/ci?logo=github-actions)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vinayakkulkarni/mapbox-gl-interpolate-heatmap/Ship%20js%20trigger?label=⛴%20Ship.js%20trigger)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/actions/workflows/shipjs-trigger.yml)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/vinayakkulkarni/mapbox-gl-interpolate-heatmap?sort=semver&logo=github)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/releases)
+[![npm](https://img.shields.io/npm/v/mapbox-gl-interpolate-heatmap?logo=npm)](https://www.npmjs.com/package/mapbox-gl-interpolate-heatmap)
+[![npm](https://img.shields.io/npm/dm/mapbox-gl-interpolate-heatmap?logo=npm)](http://npm-stat.com/charts.html?package=mapbox-gl-interpolate-heatmap)
+[![npm bundle size (version)](https://img.shields.io/bundlephobia/min/mapbox-gl-interpolate-heatmap/latest)](https://bundlephobia.com/package/mapbox-gl-interpolate-heatmap@latest)
+[![npm type definitions](https://img.shields.io/npm/types/mapbox-gl-interpolate-heatmap?logo=TypeScript)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/blob/master/package.json)
+[![DeepScan grade](https://deepscan.io/api/teams/9055/projects/19648/branches/513258/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=9055&pid=19648&bid=513258)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap)](https://snyk.io/test/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap)
+[![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap?logo=lgtm)](https://lgtm.com/projects/g/vinayakkulkarni/mapbox-gl-interpolate-heatmap/alerts/)
+[![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/vinayakkulkarni/mapbox-gl-interpolate-heatmap?logo=lgtm)](https://lgtm.com/projects/g/vinayakkulkarni/mapbox-gl-interpolate-heatmap/context:javascript)
+[![GitHub contributors](https://img.shields.io/github/contributors/vinayakkulkarni/mapbox-gl-interpolate-heatmap)](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/graphs/contributors)
+[![FOSSA](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvinayakkulkarni%2Fmapbox-gl-interpolate-heatmap?ref=badge_shield)
+
+[![eslint](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/eslint?logo=eslint)](https://eslint.org/)
+[![prettier](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/prettier?logo=prettier)](https://prettier.io/)
+[![rollup](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/rollup?logo=rollup.js)](https://rollupjs.org/guide/en/)
+[![typescript](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/typescript?logo=TypeScript)](https://www.typescriptlang.org/)
+
+---
 
 InterpolateHeatmapLayer is a minimalist JavaScript library for rendering temperature maps (or interpolate heatmaps) with [Mapbox GJ JS](https://docs.mapbox.com/mapbox-gl-js/guides/). This library was greatly inspired by the [temperature-map-gl](https://github.com/ham-systems/temperature-map-gl) library, and depends on [Earcut](https://github.com/mapbox/earcut).
 
