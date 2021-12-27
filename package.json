@@ -61,7 +61,7 @@
     "@rollup/plugin-node-resolve": "^13.1.1",
     "@rollup/plugin-sucrase": "^4.0.1",
     "@types/earcut": "^2.1.1",
-    "@types/mapbox-gl": "^1.13.2",
+    "@types/mapbox-gl": "^2.6.0",
     "@types/node": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
