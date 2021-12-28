@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.1.0...v0.2.0) (2021-12-28)
+
+
+### Bug Fixes
+
+* all type errors ([5d60eee](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/5d60eee9edbf764144ace591fd68735c304731ab))
+
+
+### Features
+
+* convert the package to a class ([06ee5e1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/06ee5e1fc20661dd8bf60efee098365a6fedfd3e))
+
+
+
 # 0.1.0 (2021-12-27)
 
 
