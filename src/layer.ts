@@ -9,14 +9,15 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
   minValue = Infinity;
   opacity = 0.5;
   p = 3;
-  points: { lat: number; lon: number; val: number }[] = [];
-  roi?: { lat: number; lon: number }[] = [];
+  data: { lat: number; lon: number; val: number }[] = [];
+  aoi?: { lat: number; lon: number }[] = [];
   textureCoverSameAreaAsROI: boolean;
   valueToColor?: string = `
   vec3 valueToColor(float value) {
       return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
   }
 `;
+  points: number[][] = [];
   // Custom Props
   aPositionComputation?: number;
   aPositionDraw?: number;
@@ -46,8 +47,8 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
 
   constructor(options: Options) {
     this.id = options.id || '';
-    this.points = options.points || [];
-    this.roi = options.roi || [];
+    this.data = options.data || [];
+    this.aoi = options.aoi || [];
     this.valueToColor =
       options.valueToColor ||
       `
@@ -198,11 +199,11 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
       throw 'WebGL error: Failed to get the storage location of drawing variable';
     }
     const drawingVertices = [];
-    if (this.roi?.length === 0) {
+    if (this.aoi?.length === 0) {
       drawingVertices.push(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0);
     } else {
-      this.roi?.forEach((roi) => {
-        const coordinates = mapboxgl.MercatorCoordinate.fromLngLat(roi);
+      this.aoi?.forEach((aoi) => {
+        const coordinates = mapboxgl.MercatorCoordinate.fromLngLat(aoi);
         drawingVertices.push(coordinates.x, coordinates.y);
       });
     }
@@ -271,21 +272,25 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     this.points = [];
     let minValue = Infinity;
     let maxValue = -Infinity;
-    this.points.forEach((raw) => {
-      const { lat, lng: lon } =
-        mapboxgl.MercatorCoordinate.fromLngLat(raw).toLngLat();
-      this.points.push({ lat, lon, val: raw.val });
-      if (raw.val < minValue) {
-        minValue = raw.val;
+    this.data.forEach((rawPoint) => {
+      const mercatorCoordinates =
+        mapboxgl.MercatorCoordinate.fromLngLat(rawPoint);
+      this.points.push([
+        mercatorCoordinates.x,
+        mercatorCoordinates.y,
+        rawPoint.val,
+      ]);
+      if (rawPoint.val < minValue) {
+        minValue = rawPoint.val;
       }
-      if (raw.val > maxValue) {
-        maxValue = raw.val;
+      if (rawPoint.val > maxValue) {
+        maxValue = rawPoint.val;
       }
     });
     minValue = minValue < this.minValue ? minValue : this.minValue;
     maxValue = maxValue > this.maxValue ? maxValue : this.maxValue;
     this.points.forEach((point) => {
-      point.val = (point.val - minValue) / (maxValue - minValue);
+      point[2] = (point[2] - minValue) / (maxValue - minValue);
     });
     this.resizeFramebuffer = () => {
       if (!this.canvas || !this.canvas.width || !this.canvas.height)
@@ -353,8 +358,8 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     for (let i = 0; i < this.points.length; i += 1) {
       const point = this.points.at(i);
       if (!point) throw new Error(`error: point not found at index: ${i}`);
-      gl.uniform1f(this.uUi, point.val);
-      gl.uniform2f(this.uXi, point.lat, point.lon);
+      gl.uniform1f(this.uUi, point[2]);
+      gl.uniform2f(this.uXi, point[0], point[1]);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.computationVerticesBuffer);
       gl.enableVertexAttribArray(this.aPositionComputation);
       gl.vertexAttribPointer(

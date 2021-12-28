@@ -46,7 +46,7 @@ A live demo showing the global temperature is available [here](https://rylern.gi
     ```html
     <body>
       <div id="map"></div>
-      <script src="interpolateHeatmapLayer.js"></script>
+      <script src="mapbox-gl-interpolate-heatmap.cjs.js"></script>
       <script src="map.js"></script>
     </body>
     ```
@@ -62,7 +62,7 @@ A live demo showing the global temperature is available [here](https://rylern.gi
   });
 
   map.on('load', () => {
-    const layer = interpolateHeatmapLayer.create({
+    const layer = new MapboxInterpolateHeatmapLayer({
       // parameters here
     });
     map.addLayer(layer);
@@ -76,7 +76,7 @@ A live demo showing the global temperature is available [here](https://rylern.gi
   ```
 
   ```javascript
-  const interpolateHeatmapLayer = require('mapbox-gl-interpolate-heatmap');
+  import { MapboxInterpolateHeatmapLayer } from 'mapbox-gl-interpolate-heatmap';
 
   const map = new mapboxgl.Map({
     container: 'map',
@@ -84,7 +84,7 @@ A live demo showing the global temperature is available [here](https://rylern.gi
   });
 
   map.on('load', () => {
-    const layer = interpolateHeatmapLayer.create({
+    const layer = new MapboxInterpolateHeatmapLayer({
       // parameters here
     });
     map.addLayer(layer);
@@ -93,12 +93,12 @@ A live demo showing the global temperature is available [here](https://rylern.gi
 
 ## Usage
 
-The `interpolateHeatmapLayer.create()` function has the following parameters:
+The `new MapboxInterpolateHeatmapLayer()` function has the following parameters:
 
-- `points`: An array of points, each point being an object containing a latitude `lat`, a longitude `lon`, and a value `val`. Example:
+- `data`: An array of points, each point being an object containing a latitude `lat`, a longitude `lon`, and a value `val`. Example:
 
   ```javascript
-  points = [
+  data = [
     {
       lat: 62.470663,
       lon: 6.176846,
@@ -114,7 +114,7 @@ The `interpolateHeatmapLayer.create()` function has the following parameters:
 
   Since Mapbox uses the Web Mercator projection that projects the poles at infinity, remember to define the latitude within -85° and 85°. Default value: `[]`.
 
-- `layerID`: unique [Mapbox layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#id) name. Default value: `''`.
+- `id`: unique [Mapbox layer](https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#id) name. Default value: `''`.
 
 - `opacity`: a number between 0 and 1 describing the transparency of the color. Default value: `0.5`.
 
@@ -126,7 +126,7 @@ The `interpolateHeatmapLayer.create()` function has the following parameters:
 
 - `p`: a factor affecting the computation of the color. A high value makes the color uniform around each point. Once again, take a look at the technical explanation part if you want to know more. Default value: `3`.
 
-- `roi`: region of interest, the layer will only be displayed inside that area. It's a list of coordinates with the same format as `points` (without the `val` attribute). If the list is empty, the entire map is the region of interest. Default value: `[]`.
+- `aoi`: area of interest, the layer will only be displayed inside that area. It's a list of coordinates with the same format as `points` (without the `val` attribute). If the list is empty, the entire map is the region of interest. Default value: `[]`.
 
 - `valueToColor`: [GLSL](https://www.khronos.org/opengl/wiki/OpenGL_Shading_Language) function (passed as a string) that map a value to the heatmap color. By default, a low value is colored blue, a medium green and a high red. This parameter allows you to change this behavior. The function must be named `valueToColor` with a `float` parameter (which will take values between 0 and 1), and must return a ` vec3` (with each component between 0 and 1). Default value:
 
