@@ -3,36 +3,65 @@ import mapboxgl, { CustomLayerInterface } from 'mapbox-gl';
 import type { Options } from '../types';
 
 class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
-  id = '';
-  opacity?: number = 0.5;
-  minValue?: number = Infinity;
-  maxValue?: number = -Infinity;
-  p?: number = 3;
   framebufferFactor = 0.3;
+  id = '';
+  maxValue = -Infinity;
+  minValue = Infinity;
+  opacity = 0.5;
+  p = 3;
   points: { lat: number; lon: number; val: number }[] = [];
   roi?: { lat: number; lon: number }[] = [];
-  valueToColor?: string = `vec3 valueToColor(float value) { return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0)) }`;
   textureCoverSameAreaAsROI: boolean;
+  valueToColor?: string = `
+  vec3 valueToColor(float value) {
+      return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
+  }
+`;
   // Custom Props
-  renderingMode?: '2d' | '3d' | undefined;
-  type: 'custom' = 'custom';
+  aPositionComputation?: number;
+  aPositionDraw?: number;
   canvas?: HTMLCanvasElement;
+  computationFramebuffer: WebGLFramebuffer | null = null;
+  computationProgram: WebGLProgram | null = null;
+  computationTexture: WebGLTexture | null = null;
+  computationVerticesBuffer: WebGLBuffer | null = null;
+  drawingVerticesBuffer: WebGLBuffer | null = null;
+  drawProgram: WebGLProgram | null = null;
+  framebufferHeight?: number;
+  framebufferWidth?: number;
+  indicesBuffer: WebGLBuffer | null = null;
+  indicesNumber: number | null = null;
+  renderingMode: '2d' | '3d' = '2d';
+  resizeFramebuffer?: () => void;
+  type: 'custom' = 'custom';
+  uComputationTexture: WebGLUniformLocation | null = null;
+  uFramebufferSize: WebGLUniformLocation | null = null;
+  uMatrixComputation: WebGLUniformLocation | null = null;
+  uMatrixDraw: WebGLUniformLocation | null = null;
+  uOpacity: WebGLUniformLocation | null = null;
+  uP: WebGLUniformLocation | null = null;
+  uScreenSizeDraw: WebGLUniformLocation | null = null;
+  uUi: WebGLUniformLocation | null = null;
+  uXi: WebGLUniformLocation | null = null;
 
   constructor(options: Options) {
     this.id = options.id || '';
     this.points = options.points || [];
     this.roi = options.roi || [];
-    this.renderingMode = '2d';
     this.valueToColor =
       options.valueToColor ||
-      `vec3 valueToColor(float value) { return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0)) }`;
+      `
+      vec3 valueToColor(float value) {
+          return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
+      }
+  `;
     this.opacity = options.opacity || 0.5;
     this.minValue = options.minValue || Infinity;
     this.maxValue = options.maxValue || -Infinity;
     this.p = options.p || 3;
     this.framebufferFactor = options.framebufferFactor || 0.3;
     // Having a framebufferFactor < 1 and a texture that don't cover the entire map results in visual artifacts, so we prevent this situation
-    this.textureCoverSameAreaAsROI = options.framebufferFactor === 1;
+    this.textureCoverSameAreaAsROI = this.framebufferFactor === 1;
   }
 
   onAdd(map: mapboxgl.Map, gl: WebGLRenderingContext): void {
@@ -43,9 +72,7 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw 'WebGL extension not supported';
     }
-
     this.canvas = map.getCanvas();
-
     const vertexSource = `
               precision highp float;
               attribute vec2 a_Position;
@@ -56,13 +83,10 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
           `;
     const fragmentSource = `
               precision highp float;
-
               ${this.valueToColor}
-
               uniform sampler2D u_ComputationTexture;
               uniform vec2 u_ScreenSize;
               uniform float u_Opacity;
-
               void main(void) {
                   vec4 data = texture2D(u_ComputationTexture, vec2(gl_FragCoord.x/u_ScreenSize.x, gl_FragCoord.y/u_ScreenSize.y));
                   float u = data.x/data.y;
@@ -96,21 +120,25 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
                   gl_FragColor = vec4(ui*wi, wi, 0.0, 1.0);
               }
           `;
-
     const computationVertexShader = createVertexShader(
       gl,
       computationVertexSource,
     );
+    if (!computationVertexShader)
+      throw new Error('error: computation vertex shader not created');
     const computationFragmentShader = createFragmentShader(
       gl,
       computationFragmentSource,
     );
-
+    if (!computationFragmentShader)
+      throw new Error('error: computation fragment shader not created');
     this.computationProgram = createProgram(
       gl,
       computationVertexShader,
       computationFragmentShader,
     );
+    if (!this.computationProgram)
+      throw new Error('error: computation fragment shader not created');
     this.aPositionComputation = gl.getAttribLocation(
       this.computationProgram,
       'a_Position',
@@ -136,15 +164,19 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw 'WebGL error: Failed to get the storage location of computation variable';
     }
-
     const drawingVertexShader = createVertexShader(gl, vertexSource);
+    if (!drawingVertexShader)
+      throw new Error('error: drawing vertex shader not created');
     const drawingFragmentShader = createFragmentShader(gl, fragmentSource);
-
+    if (!drawingFragmentShader)
+      throw new Error('error: drawing fragment shader not created');
     this.drawProgram = createProgram(
       gl,
       drawingVertexShader,
       drawingFragmentShader,
     );
+    if (!this.drawProgram)
+      throw new Error('error: drawing program not created');
     this.aPositionDraw = gl.getAttribLocation(this.drawProgram, 'a_Position');
     this.uMatrixDraw = gl.getUniformLocation(this.drawProgram, 'u_Matrix');
     this.uComputationTexture = gl.getUniformLocation(
@@ -165,7 +197,6 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     ) {
       throw 'WebGL error: Failed to get the storage location of drawing variable';
     }
-
     const drawingVertices = [];
     if (this.roi?.length === 0) {
       drawingVertices.push(-1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0);
@@ -175,7 +206,6 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
         drawingVertices.push(coordinates.x, coordinates.y);
       });
     }
-
     this.drawingVerticesBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.drawingVerticesBuffer);
     gl.bufferData(
@@ -183,7 +213,6 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
       new Float32Array(drawingVertices),
       gl.STATIC_DRAW,
     );
-
     const computationVertices = this.textureCoverSameAreaAsROI
       ? drawingVertices
       : [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
@@ -194,31 +223,29 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
       new Float32Array(computationVertices),
       gl.STATIC_DRAW,
     );
-
     const indices = earcut(drawingVertices);
     this.indicesBuffer = gl.createBuffer();
-    this.indicesBuffer.indicesNumber = indices.length;
+    if (!this.indicesBuffer)
+      throw new Error('error: indices buffer not created');
+    this.indicesNumber = indices.length;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
     gl.bufferData(
       gl.ELEMENT_ARRAY_BUFFER,
       new Uint8Array(indices),
       gl.STATIC_DRAW,
     );
-
     this.framebufferWidth = Math.ceil(
       this.canvas.width * this.framebufferFactor,
     );
     this.framebufferHeight = Math.ceil(
       this.canvas.height * this.framebufferFactor,
     );
-
     this.computationTexture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, this.computationTexture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-
     gl.texImage2D(
       gl.TEXTURE_2D,
       0,
@@ -230,7 +257,6 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
       gl.FLOAT,
       null,
     );
-
     this.computationFramebuffer = gl.createFramebuffer();
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.computationFramebuffer);
     gl.framebufferTexture2D(
@@ -240,42 +266,36 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
       this.computationTexture,
       0,
     );
-
     gl.bindTexture(gl.TEXTURE_2D, null);
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
     this.points = [];
     let minValue = Infinity;
     let maxValue = -Infinity;
-    this.points.forEach((rawPoint) => {
-      const mercatorCoordinates =
-        mapboxgl.MercatorCoordinate.fromLngLat(rawPoint);
-      this.points.push([
-        mercatorCoordinates.x,
-        mercatorCoordinates.y,
-        rawPoint.val,
-      ]);
-      if (rawPoint.val < minValue) {
-        minValue = rawPoint.val;
+    this.points.forEach((raw) => {
+      const { lat, lng: lon } =
+        mapboxgl.MercatorCoordinate.fromLngLat(raw).toLngLat();
+      this.points.push({ lat, lon, val: raw.val });
+      if (raw.val < minValue) {
+        minValue = raw.val;
       }
-      if (rawPoint.val > maxValue) {
-        maxValue = rawPoint.val;
+      if (raw.val > maxValue) {
+        maxValue = raw.val;
       }
     });
     minValue = minValue < this.minValue ? minValue : this.minValue;
     maxValue = maxValue > this.maxValue ? maxValue : this.maxValue;
-    this.points.forEach((point: number[]) => {
-      point[2] = (point[2] - minValue) / (maxValue - minValue);
+    this.points.forEach((point) => {
+      point.val = (point.val - minValue) / (maxValue - minValue);
     });
-
     this.resizeFramebuffer = () => {
+      if (!this.canvas || !this.canvas.width || !this.canvas.height)
+        throw new Error('error: required canvas `width` & `height`');
       this.framebufferWidth = Math.ceil(
         this.canvas.width * this.framebufferFactor,
       );
       this.framebufferHeight = Math.ceil(
         this.canvas.height * this.framebufferFactor,
       );
-
       gl.bindTexture(gl.TEXTURE_2D, this.computationTexture);
       gl.texImage2D(
         gl.TEXTURE_2D,
@@ -291,29 +311,35 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     };
     map.on('resize', this.resizeFramebuffer);
   }
-
   onRemove(map: mapboxgl.Map, gl: WebGLRenderingContext): void {
+    if (!this.resizeFramebuffer)
+      throw new Error('error: required resize frame buffer callback');
     map.off('resize', this.resizeFramebuffer);
-
     gl.deleteTexture(this.computationTexture);
     gl.deleteBuffer(this.drawingVerticesBuffer);
     gl.deleteBuffer(this.computationVerticesBuffer);
     gl.deleteBuffer(this.indicesBuffer);
     gl.deleteFramebuffer(this.computationFramebuffer);
   }
-
   prerender(gl: WebGLRenderingContext, matrix: number[]): void {
+    if (
+      !this.framebufferWidth ||
+      !this.framebufferHeight ||
+      this.aPositionComputation === undefined ||
+      !this.indicesNumber ||
+      !this.canvas ||
+      !this.canvas.width ||
+      !this.canvas.height
+    ) {
+      throw new Error('error: missing options for prerendering');
+    }
     gl.disable(gl.DEPTH_TEST);
-
     gl.enable(gl.BLEND);
     gl.blendEquation(gl.FUNC_ADD);
     gl.blendFunc(gl.ONE, gl.ONE);
-
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
     gl.useProgram(this.computationProgram);
     gl.uniformMatrix4fv(this.uMatrixComputation, false, matrix);
-
     gl.uniform1f(this.uP, this.p);
     gl.uniform2f(
       this.uFramebufferSize,
@@ -323,14 +349,12 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.computationFramebuffer);
     gl.viewport(0, 0, this.framebufferWidth, this.framebufferHeight);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
-
     for (let i = 0; i < this.points.length; i += 1) {
       const point = this.points.at(i);
-      gl.uniform1f(this.uUi, point[2]);
-      gl.uniform2f(this.uXi, point[0], point[1]);
-
+      if (!point) throw new Error(`error: point not found at index: ${i}`);
+      gl.uniform1f(this.uUi, point.val);
+      gl.uniform2f(this.uXi, point.lat, point.lon);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.computationVerticesBuffer);
       gl.enableVertexAttribArray(this.aPositionComputation);
       gl.vertexAttribPointer(
@@ -342,46 +366,39 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
         0,
       );
       if (this.textureCoverSameAreaAsROI) {
-        gl.drawElements(
-          gl.TRIANGLES,
-          this.indicesBuffer.indicesNumber,
-          gl.UNSIGNED_BYTE,
-          0,
-        );
+        gl.drawElements(gl.TRIANGLES, this.indicesNumber, gl.UNSIGNED_BYTE, 0);
       } else {
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       }
     }
-
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, this.canvas.width, this.canvas.height);
   }
-
   render(gl: WebGLRenderingContext, matrix: number[]): void {
+    if (
+      this.aPositionDraw === undefined ||
+      !this.canvas ||
+      !this.canvas.width ||
+      !this.canvas.height ||
+      !this.indicesNumber
+    ) {
+      throw new Error('error: missing options for rendering');
+    }
     gl.useProgram(this.drawProgram);
-
     gl.bindBuffer(gl.ARRAY_BUFFER, this.drawingVerticesBuffer);
     gl.enableVertexAttribArray(this.aPositionDraw);
     gl.vertexAttribPointer(this.aPositionDraw, 2, gl.FLOAT, false, 0, 0);
     gl.uniformMatrix4fv(this.uMatrixDraw, false, matrix);
-
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, this.computationTexture);
     gl.uniform1i(this.uComputationTexture, 0);
     gl.uniform2f(this.uScreenSizeDraw, this.canvas.width, this.canvas.height);
     gl.uniform1f(this.uOpacity, this.opacity);
-
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indicesBuffer);
-    gl.drawElements(
-      gl.TRIANGLES,
-      this.indicesBuffer.indicesNumber,
-      gl.UNSIGNED_BYTE,
-      0,
-    );
+    gl.drawElements(gl.TRIANGLES, this.indicesNumber, gl.UNSIGNED_BYTE, 0);
   }
 }
-
 /**
  * @param gl
  * @param source
@@ -390,7 +407,6 @@ function createVertexShader(gl: WebGLRenderingContext, source: string) {
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   if (vertexShader) return compileShader(gl, vertexShader, source);
 }
-
 /**
  * @param gl
  * @param source
@@ -399,7 +415,6 @@ function createFragmentShader(gl: WebGLRenderingContext, source: string) {
   const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   if (fragmentShader) return compileShader(gl, fragmentShader, source);
 }
-
 /**
  * @param gl
  * @param shader
@@ -417,7 +432,6 @@ function compileShader(
   }
   return shader;
 }
-
 /**
  * @param gl
  * @param vertexShader
@@ -439,5 +453,4 @@ function createProgram(
   }
   return program;
 }
-
 export { MapboxInterpolateHeatmapLayer };
