@@ -400,31 +400,40 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
   }
 }
 /**
- * @param gl
- * @param source
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {string } source - source of the shader
+ * @returns {WebGLShader | undefined} - compiled shader
  */
-function createVertexShader(gl: WebGLRenderingContext, source: string) {
+function createVertexShader(
+  gl: WebGLRenderingContext,
+  source: string,
+): WebGLShader | undefined {
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   if (vertexShader) return compileShader(gl, vertexShader, source);
 }
 /**
- * @param gl
- * @param source
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {string } source - source of the shader
+ * @returns {WebGLShader | undefined} - compiled shader
  */
-function createFragmentShader(gl: WebGLRenderingContext, source: string) {
+function createFragmentShader(
+  gl: WebGLRenderingContext,
+  source: string,
+): WebGLShader | undefined {
   const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
   if (fragmentShader) return compileShader(gl, fragmentShader, source);
 }
 /**
- * @param gl
- * @param shader
- * @param source
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGLShader} shader - shader to compile
+ * @param {string} source - source of the shader
+ * @returns {WebGLShader | undefined} - compiled shader
  */
 function compileShader(
   gl: WebGLRenderingContext,
   shader: WebGLShader,
   source: string,
-) {
+): WebGLShader | undefined {
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
@@ -432,16 +441,18 @@ function compileShader(
   }
   return shader;
 }
+
 /**
- * @param gl
- * @param vertexShader
- * @param fragmentShader
+ * @param {WebGLRenderingContext} gl - WebGL context
+ * @param {WebGLShader} vertexShader - vertext shader
+ * @param {WebGLShader} fragmentShader - fragment shader
+ * @returns {WebGLProgram | null} - compiled program
  */
 function createProgram(
   gl: WebGLRenderingContext,
   vertexShader: WebGLShader,
   fragmentShader: WebGLShader,
-) {
+): WebGLProgram | null {
   const program = gl.createProgram();
   if (program) {
     gl.attachShader(program, vertexShader);
