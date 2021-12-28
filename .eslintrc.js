@@ -17,7 +17,7 @@ module.exports = {
   plugins: ['jsdoc', '@typescript-eslint', 'prettier', 'security', 'import'],
   extends: [
     'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:jsdoc/recommended',
     'plugin:security/recommended',
     'plugin:import/recommended',

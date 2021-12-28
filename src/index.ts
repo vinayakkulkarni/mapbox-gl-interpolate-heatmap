@@ -1,4 +1,4 @@
-import { create } from './layer';
+import { MapboxInterpolateHeatmapLayer } from './layer';
 
-export default create;
-export { create };
+export default MapboxInterpolateHeatmapLayer;
+export { MapboxInterpolateHeatmapLayer };
