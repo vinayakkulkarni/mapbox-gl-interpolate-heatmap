@@ -73,6 +73,7 @@
     "eslint-plugin-security": "^1.4.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.4",
+    "mapbox-gl": "^1.13.2",
     "prettier": "^2.5.1",
     "rollup": "^2.62.0",
     "rollup-plugin-terser": "^7.0.2",

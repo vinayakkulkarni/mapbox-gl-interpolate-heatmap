@@ -1,5 +1,5 @@
 export type Options = {
-  layerId: string;
+  id: string;
   opacity?: number;
   minValue?: number;
   maxValue?: number;
