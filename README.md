@@ -136,6 +136,18 @@ The `new MapboxInterpolateHeatmapLayer()` function has the following parameters:
   }
   ```
 
+- `valueToColor4`: Same as `valueToColor`, but with alpha channel support. The function name and signature must be defined as:
+
+  `vec4 valueToColor4(float value, float defaultOpacity)`
+
+  Default value:
+
+  ```glsl
+  vec4 valueToColor4(float value, float defaultOpacity) {
+      return vec4(valueToColor(value), defaultOpacity);
+  }
+  ```
+
 ## Technical explanation
 
 The color is computed using the [Inverse Distance Weighting](https://en.wikipedia.org/wiki/Inverse_distance_weighting) (IDW) algorithm:
