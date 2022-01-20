@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.2.0...v0.3.0) (2022-01-20)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/setup-node from 2.5.0 to 2.5.1 ([a07f178](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/a07f1784737f97d429378630af57305ae2f0c23c))
+
+
+### Features
+
+* add support for vec4 ([3c548e2](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/3c548e2a12f745480923e3261e9b94f9360fe070))
+
+
+
 # [0.2.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.1.0...v0.2.0) (2021-12-28)
 
 
