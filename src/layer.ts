@@ -90,6 +90,7 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
     const fragmentSource = `
               precision highp float;
               ${this.valueToColor}
+              ${this.valueToColor4}
               uniform sampler2D u_ComputationTexture;
               uniform vec2 u_ScreenSize;
               uniform float u_Opacity;
