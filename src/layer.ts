@@ -39,7 +39,7 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
   indicesNumber: number | null = null;
   renderingMode: '2d' | '3d' = '2d';
   resizeFramebuffer?: () => void;
-  type: 'custom' = 'custom';
+  type: 'custom' = 'custom' as const;
   uComputationTexture: WebGLUniformLocation | null = null;
   uFramebufferSize: WebGLUniformLocation | null = null;
   uMatrixComputation: WebGLUniformLocation | null = null;
