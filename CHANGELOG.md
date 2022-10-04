@@ -1,3 +1,26 @@
+## [0.3.1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.3.0...v0.3.1) (2022-10-04)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/checkout from 2 to 3 ([e6f7b1a](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/e6f7b1ab6fe9191d967da57950392e95714e0ea0))
+* **deps:** bump actions/setup-node from 2.5.1 to 3.0.0 ([2a1035e](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/2a1035e565108dd650a242ced0b0881c3d86783e))
+* **deps:** bump actions/setup-node from 3.0.0 to 3.1.0 ([d0f7f50](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d0f7f50475990ee24c8a8c294e2bacb6fd02360f))
+* **deps:** bump actions/setup-node from 3.1.0 to 3.1.1 ([68a8c6c](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/68a8c6c71ab7e9146cb8b1237e10c1828353da2d))
+* **deps:** bump actions/setup-node from 3.1.1 to 3.2.0 ([94b949f](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/94b949fb03c3ac94c735b738167d8904b81b7a26))
+* **deps:** bump actions/setup-node from 3.2.0 to 3.3.0 ([050d387](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/050d3872592ba4c41f7719cca4d9b2b0e46b2b53))
+* **deps:** bump actions/setup-node from 3.3.0 to 3.4.1 ([084b1b8](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/084b1b86bbab96cb6b8f5c7e9315b687df910ed6))
+* **deps:** bump actions/setup-node from 3.4.1 to 3.5.0 ([af33dc5](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/af33dc5749ce19c4f95336d8bb1eeb7ba1315dfb))
+* **deps:** bump earcut from 2.2.3 to 2.2.4 ([03b9c4a](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/03b9c4ab95c8f9364749ad08b2f31141335f6ca2))
+* **deps:** bump ejs from 3.1.6 to 3.1.7 ([39629af](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/39629af864402c31259cacc9347c7f75c431488f))
+* **deps:** bump follow-redirects from 1.14.6 to 1.14.8 ([d7f475f](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d7f475ff3a1d123702c04f1576c396a8333ec02c))
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([41511bc](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/41511bcfbdff948abb19e86423ac717ec76452e1))
+* **deps:** bump node-fetch from 2.6.6 to 2.6.7 ([8fdea95](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/8fdea9520c9c1b66f5368e0a5f338dd815e168de))
+* **deps:** bump terser from 5.10.0 to 5.14.2 ([616ecf6](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/616ecf6e906822a3ecb1b5f3e216cb6f977083ba))
+* **deps:** bump wearerequired/lint-action from 1 to 2 ([3d2026a](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/3d2026a490ae22baa46c7599d8f33684fa9219f4))
+
+
+
 # [0.3.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.2.0...v0.3.0) (2022-01-20)
 
 
