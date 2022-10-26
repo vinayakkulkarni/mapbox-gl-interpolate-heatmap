@@ -1,3 +1,10 @@
+/*!
+ * mapbox-gl-interpolate-heatmap v0.3.1
+ * Mapbox layer for average/interpolation heatmaps
+ * (c) 2021 Vinayak Kulkanri<inbox.vinayak@gmail.com>
+ * Released under the MIT License
+ */
+
 import mapboxgl, { CustomLayerInterface } from 'mapbox-gl';
 
 declare type Options = {

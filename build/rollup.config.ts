@@ -1,31 +1,7 @@
-import alias from '@rollup/plugin-alias';
-import { babel } from '@rollup/plugin-babel';
-import beep from '@rollup/plugin-beep';
-import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import sucrase from '@rollup/plugin-sucrase';
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
 import { terser } from 'rollup-plugin-terser';
 import pkg from '../package.json';
-
-const extensions = ['.js', '.ts', '.json'];
-
-const plugins = [
-  alias(),
-  resolve({ extensions, browser: true }),
-  babel({
-    babelHelpers: 'bundled',
-    exclude: 'node_modules/**',
-  }),
-  commonjs({ extensions, exclude: 'src/**', include: 'node_modules' }),
-  sucrase({
-    exclude: ['node_modules/**'],
-    transforms: ['typescript'],
-  }),
-  beep(),
-  esbuild(),
-];
 
 const bundle = (config) => ({
   input: 'src/index.ts',
@@ -42,9 +18,18 @@ const banner = `/*!
 `;
 
 export default [
+  // Generate ES, CJS & UMD bundles
   bundle({
-    plugins,
+    plugins: [esbuild()],
     output: [
+      {
+        file: pkg.module,
+        name: pkg.name,
+        format: 'es',
+        sourcemap: true,
+        exports: 'named',
+        banner,
+      },
       {
         file: pkg.unpkg,
         name: pkg.name,
@@ -52,14 +37,6 @@ export default [
         format: 'cjs',
         strict: true,
         sourcemap: true,
-        banner,
-      },
-      {
-        file: pkg.module,
-        name: pkg.name,
-        format: 'es',
-        sourcemap: true,
-        exports: 'named',
         banner,
       },
       {
@@ -76,9 +53,10 @@ export default [
       },
     ],
   }),
+  // Generate minified bundle
   bundle({
     plugins: [
-      ...plugins,
+      esbuild(),
       terser({
         compress: {
           drop_console: true,
@@ -91,19 +69,23 @@ export default [
       file: pkg.cdn,
       name: pkg.name,
       exports: 'named',
-      banner,
       sourcemap: true,
+      banner,
       globals: {
         earcut: 'earcut',
         'mapbox-gl': 'mapboxgl',
       },
     },
   }),
+  // Generate `.d.ts` file(s)
   bundle({
     plugins: [dts()],
     output: {
-      file: pkg.typings,
       format: 'es',
+      file: pkg.typings,
+      name: pkg.name,
+      exports: 'named',
+      banner,
     },
   }),
 ];
