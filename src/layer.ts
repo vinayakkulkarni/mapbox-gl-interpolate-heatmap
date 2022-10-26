@@ -1,28 +1,30 @@
 import earcut from 'earcut';
 import mapboxgl, { CustomLayerInterface } from 'mapbox-gl';
 
-type Options = {
+type HeatmapLayer = {
   id: string;
-  opacity?: number;
-  minValue?: number;
-  maxValue?: number;
-  p?: number;
-  framebufferFactor?: number;
   data: { lat: number; lon: number; val: number }[];
+  framebufferFactor?: number;
+  maxValue?: number;
+  minValue?: number;
+  opacity?: number;
+  p?: number;
   aoi?: { lat: number; lon: number }[];
   valueToColor?: string;
-};
+  valueToColor4?: string;
+  textureCoverSameAreaAsROI?: boolean;
+  points?: number[][];
+} & CustomLayerInterface;
 
-class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
-  framebufferFactor = 0.3;
+class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
   id = '';
+  data: { lat: number; lon: number; val: number }[] = [];
+  framebufferFactor = 0.3;
   maxValue = -Infinity;
   minValue = Infinity;
   opacity = 0.5;
   p = 3;
-  data: { lat: number; lon: number; val: number }[] = [];
   aoi?: { lat: number; lon: number }[] = [];
-  textureCoverSameAreaAsROI: boolean;
   valueToColor?: string = `
     vec3 valueToColor(float value) {
       return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
@@ -33,6 +35,7 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
         return vec4(valueToColor(value), defaultOpacity);
     }
   `;
+  textureCoverSameAreaAsROI: boolean;
   points: number[][] = [];
   // Custom Props
   aPositionComputation?: number;
@@ -61,7 +64,7 @@ class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
   uUi: WebGLUniformLocation | null = null;
   uXi: WebGLUniformLocation | null = null;
 
-  constructor(options: Options) {
+  constructor(options: HeatmapLayer) {
     this.id = options.id || '';
     this.data = options.data || [];
     this.aoi = options.aoi || [];

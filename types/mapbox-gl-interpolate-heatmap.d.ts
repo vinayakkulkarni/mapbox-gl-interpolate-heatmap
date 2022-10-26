@@ -1,5 +1,5 @@
 /*!
- * mapbox-gl-interpolate-heatmap v0.3.1
+ * mapbox-gl-interpolate-heatmap v0.4.0
  * Mapbox layer for average/interpolation heatmaps
  * (c) 2021 Vinayak Kulkanri<inbox.vinayak@gmail.com>
  * Released under the MIT License
@@ -7,43 +7,46 @@
 
 import mapboxgl, { CustomLayerInterface } from 'mapbox-gl';
 
-declare type Options = {
+declare type HeatmapLayer = {
   id: string;
-  opacity?: number;
-  minValue?: number;
-  maxValue?: number;
-  p?: number;
-  framebufferFactor?: number;
   data: {
     lat: number;
     lon: number;
     val: number;
   }[];
+  framebufferFactor?: number;
+  maxValue?: number;
+  minValue?: number;
+  opacity?: number;
+  p?: number;
   aoi?: {
     lat: number;
     lon: number;
   }[];
   valueToColor?: string;
-};
-declare class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
-  framebufferFactor: number;
+  valueToColor4?: string;
+  textureCoverSameAreaAsROI?: boolean;
+  points?: number[][];
+} & CustomLayerInterface;
+declare class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
   id: string;
+  data: {
+    lat: number;
+    lon: number;
+    val: number;
+  }[];
+  framebufferFactor: number;
   maxValue: number;
   minValue: number;
   opacity: number;
   p: number;
-  data: {
-    lat: number;
-    lon: number;
-    val: number;
-  }[];
   aoi?: {
     lat: number;
     lon: number;
   }[];
-  textureCoverSameAreaAsROI: boolean;
   valueToColor?: string;
   valueToColor4?: string;
+  textureCoverSameAreaAsROI: boolean;
   points: number[][];
   aPositionComputation?: number;
   aPositionDraw?: number;
@@ -70,7 +73,7 @@ declare class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
   uScreenSizeDraw: WebGLUniformLocation | null;
   uUi: WebGLUniformLocation | null;
   uXi: WebGLUniformLocation | null;
-  constructor(options: Options);
+  constructor(options: HeatmapLayer);
   onAdd(map: mapboxgl.Map, gl: WebGLRenderingContext): void;
   onRemove(map: mapboxgl.Map, gl: WebGLRenderingContext): void;
   prerender(gl: WebGLRenderingContext, matrix: number[]): void;
