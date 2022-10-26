@@ -8,6 +8,7 @@
   "unpkg": "dist/mapbox-gl-interpolate-heatmap.cjs.js",
   "jsdelivr": "dist/mapbox-gl-interpolate-heatmap.cjs.js",
   "cdn": "dist/mapbox-gl-interpolate-heatmap.min.js",
+  "type": "module",
   "sideEffects": false,
   "files": [
     "dist"
