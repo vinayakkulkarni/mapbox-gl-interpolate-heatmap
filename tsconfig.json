@@ -17,24 +17,11 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
-      "@/*": [
-        "src/*"
-      ]
-    },
+      "~/*": ["./*"],
+      "@/*": ["src/*"]
+    }
   },
-  "types": [
-    "@types/node",
-    "@types/mapbox-gl",
-    "@types/earcut"
-  ],
-  "include": [
-    "src/**/*.ts",
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "types": ["@types/node", "@types/mapbox-gl", "@types/earcut"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["dist", "node_modules"]
 }
