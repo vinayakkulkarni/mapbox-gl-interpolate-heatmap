@@ -14,24 +14,6 @@
   "files": [
     "dist"
   ],
-  "keywords": [
-    "mapbox",
-    "heatmap",
-    "layer",
-    "average",
-    "interpolation",
-    "temperature",
-    "map"
-  ],
-  "author": {
-    "name": "Vinayak Kulkanri",
-    "email": "inbox.vinayak@gmail.com",
-    "url": "https://vinayakkulkarni.dev"
-  },
-  "contributors": [
-    "Léo Leplat"
-  ],
-  "license": "MIT",
   "scripts": {
     "build": "rimraf dist && npm run bundle && npm run lintfix",
     "bundle": "rollup --config build/rollup.config.ts",
@@ -78,9 +60,28 @@
     "shipjs": "^0.24.4",
     "typescript": "^4.8.4"
   },
+  "keywords": [
+    "mapbox",
+    "heatmap",
+    "layer",
+    "average",
+    "interpolation",
+    "temperature",
+    "map"
+  ],
+  "author": {
+    "name": "Vinayak Kulkarni",
+    "email": "inbox.vinayak@gmail.com",
+    "url": "https://vinayakkulkarni.dev"
+  },
+  "contributors": [
+    "Léo Leplat",
+    "Chris Santamaria"
+  ],
+  "license": "MIT",
   "engines": {
-    "node": ">=19.0.0",
-    "npm": ">=8.3.0"
+    "node": ">=18.12.0 <=19.0.0",
+    "npm": ">=8.19.2"
   },
   "bugs": {
     "url": "https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/issues"
