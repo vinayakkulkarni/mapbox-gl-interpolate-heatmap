@@ -1,3 +1,18 @@
+# [0.5.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.4.0...v0.5.0) (2022-10-27)
+
+
+### Bug Fixes
+
+* build type declarations to dist ([d9687be](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d9687bee8c57736678486fafeb4900c714d3e868))
+
+
+### Features
+
+* allow custom valueToColor4 via constructor ([5ed45ba](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/5ed45baaaa0299bd4a885ece35516e55c8c981fb))
+* update typings to be more verbose ([4eb77bd](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/4eb77bdf5c7e6f13ddacf943d8326d29dc22cbd5))
+
+
+
 # [0.4.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.3.1...v0.4.0) (2022-10-26)
 
 
