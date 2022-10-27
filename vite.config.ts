@@ -50,6 +50,7 @@ export default defineConfig({
   plugins: [
     dts({
       outputDir: ['dist'],
+      insertTypesEntry: true,
     }),
   ],
 });
