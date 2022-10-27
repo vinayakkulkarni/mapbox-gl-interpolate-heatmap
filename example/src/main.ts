@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl';
-// @ts-ignore
 import { MapboxInterpolateHeatmapLayer } from 'mapbox-gl-interpolate-heatmap';
 import './style.css';
 
@@ -13,9 +12,8 @@ const map = new mapboxgl.Map({
 });
 
 map.on('load', () => {
-  const layer = new MapboxInterpolateHeatmapLayer({
+  const options = {
     id: 'temperature',
-    opacity: 0.3,
     data: [
       {
         lat: 62.470663,
@@ -28,6 +26,7 @@ map.on('load', () => {
         val: 20,
       },
     ],
-  });
+  } as MapboxInterpolateHeatmapLayer;
+  const layer = new MapboxInterpolateHeatmapLayer(options);
   map.addLayer(layer);
 });

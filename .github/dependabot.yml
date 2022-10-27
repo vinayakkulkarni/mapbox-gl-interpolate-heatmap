@@ -6,7 +6,20 @@ updates:
     schedule:
       interval: daily
       time: '00:00'
-    open-pull-requests-limit: 10
+    reviewers:
+      - vinayakkulkarni
+    assignees:
+      - vinayakkulkarni
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
+  # Fetch and update latest `npm` packages
+  - package-ecosystem: npm
+    directory: '/example'
+    schedule:
+      interval: daily
+      time: '00:00'
     reviewers:
       - vinayakkulkarni
     assignees:
@@ -21,7 +34,6 @@ updates:
     schedule:
       interval: daily
       time: '00:00'
-    open-pull-requests-limit: 10
     reviewers:
       - vinayakkulkarni
     assignees:
