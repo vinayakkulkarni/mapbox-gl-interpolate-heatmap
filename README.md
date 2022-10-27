@@ -16,7 +16,7 @@
 
 [![eslint](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/eslint?logo=eslint)](https://eslint.org/)
 [![prettier](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/prettier?logo=prettier)](https://prettier.io/)
-[![rollup](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/rollup?logo=rollup.js)](https://rollupjs.org/guide/en/)
+[![vite](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/vite?logo=vite)](https://vitejs.dev/)
 [![typescript](https://img.shields.io/npm/dependency-version/mapbox-gl-interpolate-heatmap/dev/typescript?logo=TypeScript)](https://www.typescriptlang.org/)
 
 ---
