@@ -1,3 +1,17 @@
+## [0.5.1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.0...v0.5.1) (2022-10-27)
+
+
+### Bug Fixes
+
+* remove hard-coded date 😅 ([d14b1c8](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d14b1c81fb1b82209aab72bc4e99624ee24912db))
+
+
+### Features
+
+* add vite config 🎉 ([ba3fc07](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/ba3fc074df975cb76c3f5ddbbd36491a6d7e0e45))
+
+
+
 # [0.5.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.4.0...v0.5.0) (2022-10-27)
 
 
