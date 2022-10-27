@@ -25,16 +25,8 @@ class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
   opacity = 0.5;
   p = 3;
   aoi?: { lat: number; lon: number }[] = [];
-  valueToColor?: string = `
-    vec3 valueToColor(float value) {
-      return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
-    }
-  `;
-  valueToColor4?: string = `
-    vec4 valueToColor4(float value, float defaultOpacity) {
-        return vec4(valueToColor(value), defaultOpacity);
-    }
-  `;
+  valueToColor?: string;
+  valueToColor4?: string;
   textureCoverSameAreaAsROI: boolean;
   points: number[][] = [];
   // Custom Props
@@ -73,6 +65,13 @@ class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
       `
       vec3 valueToColor(float value) {
           return vec3(max((value-0.5)*2.0, 0.0), 1.0 - 2.0*abs(value - 0.5), max((0.5-value)*2.0, 0.0));
+      }
+  `;
+    this.valueToColor4 =
+      options.valueToColor4 ||
+      `
+      vec4 valueToColor4(float value, float defaultOpacity) {
+          return vec4(valueToColor(value), defaultOpacity);
       }
   `;
     this.opacity = options.opacity || 0.5;
