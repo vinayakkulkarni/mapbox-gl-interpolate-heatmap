@@ -1,3 +1,12 @@
+## [0.5.2](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.1...v0.5.2) (2022-10-27)
+
+
+### Bug Fixes
+
+* **vite:** enable `insertTypesEntry` from package.json ([cf4d7bf](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/cf4d7bf6594d99571c2f88ce98595b35c1df7533))
+
+
+
 ## [0.5.1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.0...v0.5.1) (2022-10-27)
 
 

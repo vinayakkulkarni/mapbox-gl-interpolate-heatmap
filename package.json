@@ -1,7 +1,7 @@
 {
   "name": "mapbox-gl-interpolate-heatmap",
   "description": "Mapbox layer for average/interpolation heatmaps",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "./dist/mapbox-gl-interpolate-heatmap.js",
   "module": "./dist/mapbox-gl-interpolate-heatmap.js",
   "umd": "./dist/mapbox-gl-interpolate-heatmap.umd.cjs",
