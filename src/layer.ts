@@ -16,14 +16,14 @@ type MapboxInterpolateHeatmapLayerOptions = {
 };
 
 class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
-  id = '';
-  data: { lat: number; lon: number; val: number }[] = [];
-  framebufferFactor = 0.3;
-  maxValue = -Infinity;
-  minValue = Infinity;
-  opacity = 0.5;
-  p = 3;
-  aoi?: { lat: number; lon: number }[] = [];
+  id: string;
+  data: { lat: number; lon: number; val: number }[];
+  framebufferFactor: number;
+  maxValue: number;
+  minValue: number;
+  opacity: number;
+  p: number;
+  aoi?: { lat: number; lon: number }[];
   valueToColor?: string;
   valueToColor4?: string;
   textureCoverSameAreaAsROI: boolean;
