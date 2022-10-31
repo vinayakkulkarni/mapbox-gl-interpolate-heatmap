@@ -193,8 +193,6 @@ _Note_:
 2. Commits & PRs will be allowed only if the commit messages & PR titles follow the [conventional commit standard](https://www.conventionalcommits.org/), _read more about it [here](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional#type-enum)_
 3. PS. Ensure your commits are signed. _[Read why](https://withblue.ink/2020/05/17/how-and-why-to-sign-git-commits.html)_
 
-Please contribute using [Github Flow](https://guides.github.com/introduction/flow/). Create a new branch from the default branch, add commits, and [open a pull request](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare)
-
 ## License
 
 MIT &copy; [GeoSpoc Dev Team](developers@geospoc.com) & Vinayak Kulkarni
