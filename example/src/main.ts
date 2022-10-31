@@ -11,7 +11,13 @@ const map = new mapboxgl.Map({
   zoom: 9,
 });
 
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
+
 map.on('load', async () => {
+  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+  map.addControl(new mapboxgl.ScaleControl(), 'bottom-left');
   const startingLatitude = -80;
   const startingLongitude = -180;
   const endingLatitude = 80;
@@ -23,7 +29,7 @@ map.on('load', async () => {
     for (let j = 0; j < n; j += 1) {
       points.push({
         lat: startingLatitude + (i * (endingLatitude - startingLatitude)) / n,
-        lng:
+        lon:
           startingLongitude + (j * (endingLongitude - startingLongitude)) / n,
         val: 0,
       });
@@ -34,7 +40,7 @@ map.on('load', async () => {
     'https://api.openweathermap.org/data/2.5/weather?units=metric';
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   const urls = points.map(
-    ({ lat, lng }) => `${baseUrl}&lat=${lat}&lon=${lng}&appid=${apiKey}`,
+    ({ lat, lon }) => `${baseUrl}&lat=${lat}&lon=${lon}&appid=${apiKey}`,
   );
 
   const weathers = await Promise.all(
@@ -49,13 +55,11 @@ map.on('load', async () => {
   });
 
   const options = {
-    data: points,
     id: 'temperature',
-  } as unknown;
+    data: points,
+  };
 
-  const layer = new MapboxInterpolateHeatmapLayer(
-    options as MapboxInterpolateHeatmapLayer,
-  );
+  const layer = new MapboxInterpolateHeatmapLayer(options);
 
   map.addLayer(layer);
 });
