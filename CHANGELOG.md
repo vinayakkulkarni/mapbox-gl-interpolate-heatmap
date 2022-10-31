@@ -1,3 +1,19 @@
+# [0.6.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.2...v0.6.0) (2022-10-31)
+
+
+### Bug Fixes
+
+* **deps:** bump peaceiris/actions-gh-pages from 3.8.0 to 3.9.0 ([29d48fa](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/29d48fab748c7ed68a17e86a189f2f577beda544))
+* remove `todo:` probot app ([3990bc0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/3990bc000b187d292a422fe0025a075fa33b03ad))
+* streamline fields in constructor type ([d4d9746](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d4d97466eead2f10b8e33ec34898d81dc7275069))
+
+
+### Features
+
+* **demo:** add open weather API for real data ([957e4cc](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/957e4cc77cdb7e4857279cf61eb3eb214670c5af))
+
+
+
 ## [0.5.2](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.1...v0.5.2) (2022-10-27)
 
 ### Bug Fixes
