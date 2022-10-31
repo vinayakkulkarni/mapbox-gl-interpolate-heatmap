@@ -1,7 +1,7 @@
 import earcut from 'earcut';
 import mapboxgl, { CustomLayerInterface } from 'mapbox-gl';
 
-type HeatmapLayer = {
+type MapboxInterpolateHeatmapLayerOptions = {
   id: string;
   data: { lat: number; lon: number; val: number }[];
   framebufferFactor?: number;
@@ -13,18 +13,17 @@ type HeatmapLayer = {
   valueToColor?: string;
   valueToColor4?: string;
   textureCoverSameAreaAsROI?: boolean;
-  points?: number[][];
-} & CustomLayerInterface;
+};
 
-class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
-  id = '';
-  data: { lat: number; lon: number; val: number }[] = [];
-  framebufferFactor = 0.3;
-  maxValue = -Infinity;
-  minValue = Infinity;
-  opacity = 0.5;
-  p = 3;
-  aoi?: { lat: number; lon: number }[] = [];
+class MapboxInterpolateHeatmapLayer implements CustomLayerInterface {
+  id: string;
+  data: { lat: number; lon: number; val: number }[];
+  framebufferFactor: number;
+  maxValue: number;
+  minValue: number;
+  opacity: number;
+  p: number;
+  aoi?: { lat: number; lon: number }[];
   valueToColor?: string;
   valueToColor4?: string;
   textureCoverSameAreaAsROI: boolean;
@@ -56,7 +55,7 @@ class MapboxInterpolateHeatmapLayer implements HeatmapLayer {
   uUi: WebGLUniformLocation | null = null;
   uXi: WebGLUniformLocation | null = null;
 
-  constructor(options: HeatmapLayer) {
+  constructor(options: MapboxInterpolateHeatmapLayerOptions) {
     this.id = options.id || '';
     this.data = options.data || [];
     this.aoi = options.aoi || [];
