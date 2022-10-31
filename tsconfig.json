@@ -2,7 +2,19 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "strict": true,
+    "importHelpers": true,
     "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
     "lib": [
       "esnext",
       "dom",
@@ -10,12 +22,6 @@
       "scripthost",
       "esnext.asynciterable"
     ],
-    "esModuleInterop": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "strict": true,
-    "noEmit": true,
-    "baseUrl": ".",
     "paths": {
       "~/*": ["./*"],
       "@/*": ["src/*"]
