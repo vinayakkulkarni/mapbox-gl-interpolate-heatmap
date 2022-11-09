@@ -1,3 +1,17 @@
+## [0.6.1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.6.0...v0.6.1) (2022-11-09)
+
+
+### Bug Fixes
+
+* **deps:** bump mapbox-gl-interpolate-heatmap in /example ([02f370f](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/02f370f8171ff9f142d1e383bb83c41ff1474d55))
+
+
+### Features
+
+* add CoC 🕺 ([c8cb616](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/c8cb61607b50dcaf38b308e865c6955b2033bb38))
+
+
+
 # [0.6.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.5.2...v0.6.0) (2022-10-31)
 
 
