@@ -1,8 +1,10 @@
 name: Ship js trigger
+
 on:
   pull_request:
     types:
       - closed
+
 jobs:
   build:
     name: Release

@@ -30,7 +30,7 @@ jobs:
 
       - name: Run build 🏁
         run: npm run build
-        env: 
+        env:
           VITE_WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
       - name: Deploy to GitHub Pages 🚀
