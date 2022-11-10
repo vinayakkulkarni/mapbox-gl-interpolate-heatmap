@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "mapbox-gl": "^1.13.2",
-    "mapbox-gl-interpolate-heatmap": "^0.6.0"
+    "mapbox-gl-interpolate-heatmap": "^0.6.1"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^1.13.4",
