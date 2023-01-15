@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/config-conventional": "^17.4.2",
     "@types/earcut": "^2.1.1",
     "@types/mapbox-gl": "^1.13.2",
     "@types/node": "^18.11.18",
