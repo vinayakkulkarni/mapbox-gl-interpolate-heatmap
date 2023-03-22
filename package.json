@@ -57,7 +57,7 @@
     "mapbox-gl": "1.13.2",
     "mapbox-gl-interpolate-heatmap": "^0.5.2",
     "prettier": "^2.8.6",
-    "shipjs": "^0.26.0",
+    "shipjs": "^0.26.1",
     "typescript": "^5.0.2",
     "vite": "^4.2.1",
     "vite-plugin-dts": "^2.1.0"
