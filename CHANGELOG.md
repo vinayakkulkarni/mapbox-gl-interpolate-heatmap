@@ -1,3 +1,24 @@
+# [0.7.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.6.1...v0.7.0) (2023-04-01)
+
+
+### Bug Fixes
+
+* **deps:** bump amannn/action-semantic-pull-request from 5.0.2 to 5.1.0 ([0d29f31](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/0d29f31663893802ccde52af580d49192e284536))
+* **deps:** bump amannn/action-semantic-pull-request from 5.1.0 to 5.2.0 ([2b056f5](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/2b056f569c5f18571286af970de53bf361143925))
+* **deps:** bump json5 from 1.0.1 to 1.0.2 ([cd576bd](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/cd576bd95eb243df9af73b08a6def1f87439c93a))
+* **deps:** bump mapbox-gl-interpolate-heatmap in /example ([#436](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/issues/436)) ([14ac22c](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/14ac22cf61dfee2fd0ba7f609d88c6eed755e071))
+* **deps:** bump peaceiris/actions-gh-pages from 3.9.0 to 3.9.1 ([7c690ee](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/7c690eedff6c294c5505c863d09e700a7d8a8a4f))
+* **deps:** bump peaceiris/actions-gh-pages from 3.9.1 to 3.9.2 ([fae3cd2](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/fae3cd21544f31162bf4ef39ab380164a77a36ab))
+* **deps:** bump peaceiris/actions-gh-pages from 3.9.2 to 3.9.3 ([b831316](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/b83131677be7f4bba7354ac74937f74510f82bab))
+* **shipjs:** add GitHub actor step in the job ([4cdb1c7](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/4cdb1c76294f6d0a27a660429559d6ecef300f61))
+
+
+### Features
+
+* add `automerger` workflow :100: ([51da747](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/51da747ac14727a10fcf7ae7a6e5041873983da6))
+
+
+
 ## [0.6.1](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.6.0...v0.6.1) (2022-11-09)
 
 
