@@ -43,7 +43,7 @@
     "@commitlint/config-conventional": "^17.6.1",
     "@types/earcut": "^2.1.1",
     "@types/mapbox-gl": "^1.13.2",
-    "@types/node": "^18.16.2",
+    "@types/node": "^18.16.3",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
     "eslint": "^8.39.0",
