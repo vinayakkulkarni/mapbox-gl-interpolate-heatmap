@@ -39,7 +39,7 @@
     "earcut": "2.2.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.1",
+    "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
     "@types/earcut": "^2.1.1",
     "@types/mapbox-gl": "^1.13.2",
