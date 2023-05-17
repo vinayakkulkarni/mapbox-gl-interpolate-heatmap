@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@types/mapbox-gl": "^1.13.4",
-    "@types/node": "^20.1.5",
+    "@types/node": "^20.1.7",
     "typescript": "^5.0.4",
     "vite": "^4.3.6"
   }
