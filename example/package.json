@@ -16,6 +16,6 @@
     "@types/mapbox-gl": "^1.13.4",
     "@types/node": "^20.2.0",
     "typescript": "^5.0.4",
-    "vite": "^4.3.7"
+    "vite": "^4.3.8"
   }
 }
