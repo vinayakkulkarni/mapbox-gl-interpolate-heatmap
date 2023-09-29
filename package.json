@@ -41,7 +41,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@types/earcut": "^2.1.1",
+    "@types/earcut": "^2.1.2",
     "@types/mapbox-gl": "^1.13.2",
     "@types/node": "^20.7.1",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
