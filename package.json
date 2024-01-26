@@ -52,7 +52,7 @@
     "eslint-plugin-jsdoc": "^46.9.1",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-security": "^1.7.1",
-    "husky": "^8.0.3",
+    "husky": "^9.0.6",
     "lint-staged": "^15.2.0",
     "mapbox-gl": "1.13.2",
     "mapbox-gl-interpolate-heatmap": "^0.7.0",
