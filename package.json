@@ -41,7 +41,7 @@
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@types/earcut": "^2.1.4",
-    "@types/mapbox-gl": "^1.13.2",
+    "@types/mapbox-gl": "^3.0.0",
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
@@ -54,7 +54,7 @@
     "husky": "^9.0.11",
     "is-ci": "^3.0.1",
     "lint-staged": "^15.2.2",
-    "mapbox-gl": "1.13.2",
+    "mapbox-gl": "3.2.0",
     "mapbox-gl-interpolate-heatmap": "^0.7.0",
     "prettier": "^3.2.5",
     "shipjs": "^0.26.3",
@@ -64,7 +64,7 @@
   },
   "peerDependencies": {
     "earcut": "2.2.4",
-    "mapbox-gl": "1.13.2"
+    "mapbox-gl": "3.2.0"
   },
   "keywords": [
     "mapbox",
