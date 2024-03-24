@@ -36,7 +36,6 @@ export default defineConfig({
         banner,
         exports: 'named',
         strict: true,
-        sourcemap: true,
         extend: true,
         // Provide global variables to use in the UMD build
         // for externalized deps

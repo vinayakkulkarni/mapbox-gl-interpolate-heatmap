@@ -2,8 +2,8 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    node: true,
-    es6: true,
+    node: false,
+    es2022: true,
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',
@@ -12,9 +12,10 @@ module.exports = {
     lib: ['es2022'],
     ecmaFeatures: {
       jsx: false,
+      tsx: false,
     },
   },
-  plugins: ['jsdoc', 'prettier', 'security', 'import', '@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'import', 'jsdoc', 'prettier', 'security'],
   extends: [
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
