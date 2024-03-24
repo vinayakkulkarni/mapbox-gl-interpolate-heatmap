@@ -1,3 +1,22 @@
+# [0.8.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.7.0...v0.8.0) (2024-03-24)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/checkout from 3 to 4 ([a01fc3a](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/a01fc3abee62083f0adc326fe650832e7c0a32bb))
+* **deps:** bump actions/setup-node from 3 to 4 ([8c738fd](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/8c738fdbc0a06890f2b1266f350dfcba8a0a19b6))
+* **deps:** bump amannn/action-semantic-pull-request from 5.2.0 to 5.3.0 ([f80cf6b](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/f80cf6b82967113c5034c9ec9f0bc913e690bc13))
+* **deps:** bump amannn/action-semantic-pull-request from 5.3.0 to 5.4.0 ([2d1f2dc](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/2d1f2dc09cf8c56215b6f8884b130392bf0a189f))
+* **deps:** Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 ([71828dc](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/71828dc70e457f712517f2837e20da4996c08901))
+* **deps:** Bump dependabot/fetch-metadata from 1.4.0 to 1.5.0 ([b0f44eb](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/b0f44eb17e4ce628fd1ca6f84b75371619e6af51))
+* **deps:** bump dependabot/fetch-metadata from 1.5.0 to 1.5.1 ([d4da6a3](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d4da6a35857527c253ef6b85a6a62e83d3a86490))
+* **deps:** bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 ([16cc313](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/16cc313325087911dc2c8365e0fa18707c746e1d))
+* **deps:** Bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 ([d087e73](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/d087e731013a4247fc6f221208a19218444c0df2))
+* **deps:** Bump mapbox-gl-interpolate-heatmap in /example ([10822ee](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/10822eee96a076af1cce2bff4dc5d6197e5e6cdf))
+* **deps:** Bump yaml from 2.2.1 to 2.2.2 ([15668dd](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/commit/15668ddc069cc79c4604b6261da597529a09ac2e))
+
+
+
 # [0.7.0](https://github.com/vinayakkulkarni/mapbox-gl-interpolate-heatmap/compare/v0.6.1...v0.7.0) (2023-04-01)
 
 
