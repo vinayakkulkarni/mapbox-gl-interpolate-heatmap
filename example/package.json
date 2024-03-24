@@ -13,7 +13,7 @@
     "mapbox-gl-interpolate-heatmap": "^0.8.0"
   },
   "devDependencies": {
-    "@types/mapbox-gl": "^1.13.4",
+    "@types/mapbox-gl": "^2.7.21",
     "@types/node": "^20.11.30",
     "typescript": "^5.4.3",
     "vite": "^5.2.6"
