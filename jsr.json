@@ -1,8 +1,10 @@
 {
   "name": "@vinayakkulkarni/mapbox-gl-interpolate-heatmap",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "exports": "./dist/mapbox-gl-interpolate-heatmap.js",
   "publish": {
-    "exclude": ["!dist"]
+    "exclude": [
+      "!dist"
+    ]
   }
 }
