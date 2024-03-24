@@ -54,7 +54,7 @@
     "husky": "^9.0.11",
     "is-ci": "^3.0.1",
     "lint-staged": "^15.2.2",
-    "mapbox-gl": "1.13.2",
+    "mapbox-gl": "1.13.3",
     "mapbox-gl-interpolate-heatmap": "^0.7.0",
     "prettier": "^3.2.5",
     "shipjs": "^0.26.3",
@@ -64,7 +64,7 @@
   },
   "peerDependencies": {
     "earcut": "2.2.4",
-    "mapbox-gl": "1.13.2"
+    "mapbox-gl": "1.13.3"
   },
   "keywords": [
     "mapbox",
