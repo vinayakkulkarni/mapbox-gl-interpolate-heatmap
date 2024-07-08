@@ -59,7 +59,7 @@
     "prettier": "^3.3.2",
     "shipjs": "^0.26.3",
     "typescript": "^5.4.5",
-    "vite": "^5.2.11",
+    "vite": "^5.3.3",
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {
