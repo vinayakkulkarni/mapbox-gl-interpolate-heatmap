@@ -35,7 +35,7 @@
     "release:dry": "shipjs prepare --dry-run"
   },
   "dependencies": {
-    "earcut": "2.2.4"
+    "earcut": "3.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
@@ -63,7 +63,7 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "peerDependencies": {
-    "earcut": "2.2.4",
+    "earcut": "3.0.1",
     "mapbox-gl": "1.13.2"
   },
   "keywords": [
