@@ -56,7 +56,7 @@
     "lint-staged": "^15.2.7",
     "mapbox-gl": "1.13.2",
     "mapbox-gl-interpolate-heatmap": "^0.8.0",
-    "prettier": "^3.3.2",
+    "prettier": "^3.6.1",
     "shipjs": "^0.27.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
