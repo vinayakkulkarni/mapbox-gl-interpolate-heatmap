@@ -60,7 +60,7 @@
     "shipjs": "^0.27.0",
     "typescript": "^5.4.5",
     "vite": "^5.2.11",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
     "earcut": "2.2.4",
