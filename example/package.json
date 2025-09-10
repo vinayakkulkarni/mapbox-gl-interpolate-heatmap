@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "mapbox-gl": "^1.13.2",
+    "mapbox-gl": "^3.15.0",
     "mapbox-gl-interpolate-heatmap": "^0.8.0"
   },
   "devDependencies": {
