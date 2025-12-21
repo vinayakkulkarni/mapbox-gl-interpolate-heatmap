@@ -53,7 +53,7 @@
     "eslint-plugin-security": "^1.7.1",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
-    "lint-staged": "^15.2.7",
+    "lint-staged": "^16.2.7",
     "mapbox-gl": "1.13.2",
     "mapbox-gl-interpolate-heatmap": "^0.8.0",
     "prettier": "^3.3.2",
